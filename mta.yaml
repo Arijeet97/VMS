@@ -1,0 +1,58 @@
+ID: VMS
+_schema-version: '2.1'
+parameters:
+  deploy_mode: html5-repo
+version: 0.0.1
+modules:
+  - name: vms-approuter
+    type: approuter.nodejs
+    path: vms-approuter
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: VMS_html5_repo_runtime
+      - name: uaa_VMS
+  - name: VMS_ui_deployer
+    type: com.sap.html5.application-content
+    path: VMS_ui_deployer
+    requires:
+      - name: VMS_html5_repo_host
+    build-parameters:
+      requires:
+        - name: TEAM14_VMS
+          artifacts:
+            - './*'
+          target-path: resources/TEAM14_VMS
+  - name: TEAM14_VMS
+    type: html5
+    path: TEAM14_VMS
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+resources:
+  - name: VMS_html5_repo_runtime
+    parameters:
+      service-plan: app-runtime
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: VMS_html5_repo_host
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: uaa_VMS
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_VMS
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
