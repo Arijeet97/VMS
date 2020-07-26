@@ -58,6 +58,18 @@
 				"settings": {
 					"bundleName": "inc.inktn.pro.TEAM14_VMS.i18n.i18n"
 				}
+			},
+			"oGlobalModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"oPreRegForm": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
 			}
 		},
 		"resources": {
@@ -78,15 +90,56 @@
 			"routes": [{
 				"name": "RouteLanding",
 				"pattern": "RouteLanding",
-				"target": ["TargetLanding"]
+				"target": [
+					"TargetLanding"
+				]
+			}, {
+				"name": "RouteHost",
+				"pattern": "RouteHost",
+				"target": [
+					"TargetHost"
+				]
+			}, {
+				"name": "RouteAdmin",
+				"pattern": "RouteAdmin",
+				"target": [
+					"TargetAdmin"
+				]
+			}, {
+				"name": "RouteSecurity",
+				"pattern": "RouteSecurity",
+				"target": [
+					"TargetSecurity"
+				]
+			}, {
+				"name": "RouteNewVisitor",
+				"pattern": "RouteNewVisitor",
+				"target": [
+					"TargetNewVisitor"
+				]
 			}],
 			"targets": {
 				"TargetLanding": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewId": "Landing",
 					"viewName": "Landing"
+				},
+				"TargetHost": {
+					"viewType": "XML",
+					"viewName": "Host"
+				},
+				"TargetAdmin": {
+					"viewType": "XML",
+					"viewName": "Admin"
+				},
+				"TargetSecurity": {
+					"viewType": "XML",
+					"viewName": "Security"
+				},
+				"TargetNewVisitor": {
+					"viewType": "XML",
+					"viewName": "NewVisitor"
 				}
 			}
 		}
