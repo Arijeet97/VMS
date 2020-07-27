@@ -14,7 +14,6 @@
 			"version": "1.40.12"
 		}
 	},
-
 	"sap.ui": {
 		"technology": "UI5",
 		"icons": {
@@ -31,7 +30,6 @@
 			"phone": true
 		}
 	},
-
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
@@ -73,9 +71,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -87,37 +87,43 @@
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "RouteLanding",
-				"pattern": "RouteLanding",
-				"target": [
-					"TargetLanding"
-				]
-			}, {
-				"name": "RouteHost",
-				"pattern": "RouteHost",
-				"target": [
-					"TargetHost"
-				]
-			}, {
-				"name": "RouteAdmin",
-				"pattern": "RouteAdmin",
-				"target": [
-					"TargetAdmin"
-				]
-			}, {
-				"name": "RouteSecurity",
-				"pattern": "RouteSecurity",
-				"target": [
-					"TargetSecurity"
-				]
-			}, {
-				"name": "RouteNewVisitor",
-				"pattern": "RouteNewVisitor",
-				"target": [
-					"TargetNewVisitor"
-				]
-			}],
+			"routes": [
+				{
+					"name": "RouteLanding",
+					"pattern": "RouteLanding",
+					"target": [
+						"TargetLanding"
+					]
+				},
+				{
+					"name": "RouteHost",
+					"pattern": "RouteHost",
+					"target": [
+						"TargetHost"
+					]
+				},
+				{
+					"name": "RouteAdmin",
+					"pattern": "RouteAdmin",
+					"target": [
+						"TargetAdmin"
+					]
+				},
+				{
+					"name": "RouteSecurity",
+					"pattern": "RouteSecurity",
+					"target": [
+						"TargetSecurity"
+					]
+				},
+				{
+					"name": "RouteNewVisitor",
+					"pattern": "RouteNewVisitor",
+					"target": [
+						"TargetNewVisitor"
+					]
+				}
+			],
 			"targets": {
 				"TargetLanding": {
 					"viewType": "XML",
@@ -140,6 +146,10 @@
 				"TargetNewVisitor": {
 					"viewType": "XML",
 					"viewName": "NewVisitor"
+				},
+				"Host": {
+					"viewType": "XML",
+					"viewName": "Host"
 				}
 			}
 		}

@@ -1,0 +1,236 @@
+<core:FragmentDefinition xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<l:HorizontalLayout class="date">
+		<Label class="datelabel" text="Date:"/>
+		<DatePicker class="date" dateValue="{/date}"/>
+	</l:HorizontalLayout>
+	<l:VerticalLayout width="100%" class="TileStyle">
+		<l:Grid>
+			<l:content>
+				<!--<l:HorizontalLayout>-->
+				<GenericTile class="tileLayout sapUiMediumMarginBegin sapUiSmallMarginTop" header="Upcoming Meetings" press="onUpcoming">
+					<TileContent>
+						<core:Icon src="sap-icon://appointment"></core:Icon>
+					</TileContent>
+					<layoutData>
+						<l:GridData span="XL3 L3 M6 S12"/>
+					</layoutData>
+				</GenericTile>
+				<GenericTile class="tileLayout sapUiMediumMarginBegin sapUiSmallMarginTop" header="Checked In" press="onCheckedIn">
+					<TileContent>
+						<core:Icon src="sap-icon://trend-down"></core:Icon>
+					</TileContent>
+					<layoutData>
+						<l:GridData span="XL3 L3 M6 S12"/>
+					</layoutData>
+				</GenericTile>
+				<GenericTile class="tileLayout sapUiMediumMarginBegin sapUiSmallMarginTop" header="Checked Out" press="onCheckedOut">
+					<TileContent >
+						<core:Icon src="sap-icon://trend-up"></core:Icon>
+					</TileContent>
+					<layoutData>
+						<l:GridData span="XL3 L3 M6 S12"/>
+					</layoutData>
+				</GenericTile>
+				<GenericTile class="tileLayout sapUiMediumMarginBegin sapUiSmallMarginTop" header="Total Visitors" press="onTotalVisittor">
+					<TileContent >
+						<core:Icon src="sap-icon://account"></core:Icon>
+					</TileContent>
+					<layoutData>
+						<l:GridData span="XL3 L3 M6 S12"/>
+					</layoutData>
+				</GenericTile>
+				<!--</l:HorizontalLayout>-->
+			</l:content>
+		</l:Grid>
+	</l:VerticalLayout>
+	<Table id="idHostUpcoming" inset="true" items="{path: 'oGlobalModel>/Details'}" visible="{oViewModel>/UpcomingVisibility}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Upcoming Meetings" level="H3"/>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Label text="Sort By:"></Label>
+					<ComboBox width="8%">
+						<core:Item text="{}"></core:Item>
+					</ComboBox>
+					<Input placeholder="Search" width="15%"></Input>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Left">
+				<Text text="{i18n>MeetId}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>name}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Contact}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>ORG}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Purpose}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Time}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem >
+				<cells>
+					<Text text="{oGlobalModel>Meeting Id}"/>
+					<Text text="{oGlobalModel>Name}"/>
+					<Text text="{oGlobalModel>Contact Number}"/>
+					<Text text="{oGlobalModel>Organisation}"/>
+					<Text text="{oGlobalModel>Purpose}"/>
+					<Text text="{oGlobalModel>Time}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	<Table id="idHostCheckedIn" inset="true" items="{path: 'oGlobalModel>/CheckedIn'}" visible="{oViewModel>/CheckedInVisibility}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="CheckedIn" level="H3"/>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Label text="Sort By:"></Label>
+					<ComboBox width="8%">
+						<core:Item text="{}"></core:Item>
+					</ComboBox>
+					<Input placeholder="Search" width="15%"></Input>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Left">
+				<Text text="{i18n>MeetId}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>name}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Contact}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>ORG}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Purpose}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Time}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Stat}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem >
+				<cells>
+					<Text text="{oGlobalModel>Meeting Id}"/>
+					<Text text="{oGlobalModel>Name}"/>
+					<Text text="{oGlobalModel>Contact Number}"/>
+					<Text text="{oGlobalModel>Organisation}"/>
+					<Text text="{oGlobalModel>Purpose}"/>
+					<Text text="{oGlobalModel>Time}"/>
+					<Text text="{oGlobalModel>Status}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	<Table id="idHostCheckedOut" inset="true" items="{path: 'oGlobalModel>/Details'}" visible="{oViewModel>/CheckedOutVisibility}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="CheckedOut" level="H3"/>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Label text="Sort By:"></Label>
+					<ComboBox width="8%">
+						<core:Item text="{}"></core:Item>
+					</ComboBox>
+					<Input placeholder="Search" width="15%"></Input>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Left">
+				<Text text="{i18n>MeetId}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>name}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Contact}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>ORG}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Purpose}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Blacklist}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem >
+				<cells>
+					<Text text="{oGlobalModel>Meeting Id}"/>
+					<Text text="{oGlobalModel>Name}"/>
+					<Text text="{oGlobalModel>Contact Number}"/>
+					<Text text="{oGlobalModel>Organisation}"/>
+					<Text text="{oGlobalModel>Purpose}"/>
+					<!--<Text text="{oGlobalModel>Time}"/>-->
+					<Button icon="sap-icon://sys-cancel" type="Reject"></Button>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	<Table id="idHostTotalVisitor" inset="true" items="{path: 'oGlobalModel>/Details'}" visible="{oViewModel>/TotalVisitorVisibility}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Total Visitors" level="H3"/>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Label text="Sort By:"></Label>
+					<ComboBox width="8%">
+						<core:Item text="{}"></core:Item>
+					</ComboBox>
+					<Input placeholder="Search" width="15%"></Input>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Left">
+				<Text text="{i18n>name}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Contact}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>ORG}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Purpose}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Time}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem >
+				<cells>
+					<Text text="{oGlobalModel>Name}"/>
+					<Text text="{oGlobalModel>Contact Number}"/>
+					<Text text="{oGlobalModel>Organisation}"/>
+					<Text text="{oGlobalModel>Purpose}"/>
+					<Text text="{oGlobalModel>Time}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

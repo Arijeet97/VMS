@@ -31,7 +31,7 @@
 												<HBox class="LandingButton">
 													<Button type="Emphasized" text="Login" press="onPressGo"></Button>
 													<l:VerticalLayout>
-														<core:Fragment fragmentName="inc.inkthn.neo.NEO_VMS.fragments.BusyDialog" type="XML"/>
+														<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.BusyDialog" type="XML"/>
 													</l:VerticalLayout>
 													<Button class="LandingButton" type="Critical" text="Forgot Password?"></Button>
 												</HBox>

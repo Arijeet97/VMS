@@ -1,15 +1,17 @@
 {
-  "welcomeFile": "/index.html",
-  "authenticationMethod": "route",
-  "logout": {
-    "logoutEndpoint": "/do/logout"
-  },
-  "routes": [
-    {
-      "source": "^(.*)$",
-      "target": "$1",
-      "service": "html5-apps-repo-rt",
-      "authenticationType": "xsuaa"
-    }
-  ]
+	"welcomeFile": "/index.html",
+	"authenticationMethod": "route",
+	"logout": {
+		"logoutEndpoint": "/do/logout"
+	},
+	"routes": [{
+		"source": "^/JAVA_SERVICE_CF",
+		"target": "/",
+		"destination": "JAVA_SERVICE_CF"
+	}, {
+		"source": "^(.*)$",
+		"target": "$1",
+		"service": "html5-apps-repo-rt",
+		"authenticationType": "xsuaa"
+	}]
 }

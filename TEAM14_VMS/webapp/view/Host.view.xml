@@ -1,0 +1,69 @@
+<mvc:View controllerName="inc.inktn.pro.TEAM14_VMS.controller.Host" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:tnt="sap.tnt">
+	<tnt:ToolPage id="ToolPage">
+		<tnt:header>
+			<tnt:ToolHeader >
+				<Button id="sideNavigationToggleButton" tooltip="Show Menu" icon="sap-icon://menu2" type="Transparent" press=".onSideNavButtonPress">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSpacer width="10px"/>
+				<Image height="65%" width="10%" src="./image/Incture.png">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Image>
+				
+				<!--<Text text="Welcome Host Name" >-->
+				<!--	<layoutData>-->
+				<!--		<OverflowToolbarLayoutData priority="Low"/>-->
+				<!--	</layoutData>-->
+				<!--</Text>-->
+				<tnt:ToolHeaderUtilitySeparator/>
+				<ToolbarSpacer>
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="15px"/>
+					</layoutData>
+				</ToolbarSpacer>
+				<Button tooltip="Notifications" icon="sap-icon://bell">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+				<Button tooltip="Settings" icon="sap-icon://action-settings">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+				<Button tooltip="Profile" icon="sap-icon://customer" type="Transparent" press="onProfile">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent >
+			<tnt:SideNavigation class="masterpage" expanded="true" itemSelect=".onItemSelect" >
+				<tnt:NavigationList  items="{path: 'oGlobalModel>/HostMasterDetails'}">
+					<tnt:NavigationListItem  text="{oGlobalModel>title}" icon="{oGlobalModel>icon}" expanded="{oGlobalModel>expanded}" key="{oGlobalModel>key}"></tnt:NavigationListItem>
+				</tnt:NavigationList>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="detailContainer" initialPage="hostDash">
+				<pages>
+					<ScrollContainer id="hostDash" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Host.HostDetailDash" type="XML"></core:Fragment>
+					</ScrollContainer>
+					<ScrollContainer id="hostPreRegistration" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Host.HostPreRegistration" type="XML"></core:Fragment>
+					</ScrollContainer>
+					<ScrollContainer id="hostBlacklist" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Host.HostBlacklist" type="XML"></core:Fragment>
+					</ScrollContainer>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

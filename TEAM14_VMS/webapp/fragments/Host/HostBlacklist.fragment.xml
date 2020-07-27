@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<l:HorizontalLayout class="date">
+		<Label class="datelabel" text="Date:"/>
+		<DatePicker class="date" dateValue="{/date}"/>
+	</l:HorizontalLayout>
+	<Table id="HostBlacklistedVisitor" inset="true" items="{ path: ''}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Blacklisted Visitor" level="H3"/>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Label text="Sort By:"></Label>
+					<ComboBox width="8%">
+						<core:Item text="{}"></core:Item>
+					</ComboBox>
+					<Input placeholder="Search" width="15%"></Input>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>name}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Contact}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>ORG}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>reason}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>action}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem >
+				<cells></cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>
