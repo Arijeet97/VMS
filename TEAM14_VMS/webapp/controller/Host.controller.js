@@ -136,7 +136,7 @@ sap.ui.define([
 		onCheckedIn: function () {
 		var that = this;
 			var oHostModel = that.getOwnerComponent().getModel("oHostModel");
-			var sUrl1 = "/JAVA_SERVICE_CF/employee/getCheckedInVisitors?eId=" + oHostModel.getProperty("/eId") + "&date=" + oHostModel.getProperty(
+			var sUrl1 = "JAVA_SERVICE_CF/employee/getCheckedInVisitors?eId=" + oHostModel.getProperty("/eId") + "&date=" + oHostModel.getProperty(
 				"/date");
 			$.ajax({
 				url: sUrl1,
