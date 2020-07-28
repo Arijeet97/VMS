@@ -5,7 +5,8 @@ sap.ui.define([
 
 	return Controller.extend("inc.inktn.pro.TEAM14_VMS.controller.Landing", {
 		onInit: function () {
-
+			var oHostModel = this.getOwnerComponent().getModel("oHostModel");
+			this.getView().setModel(oHostModel, "oHostModel");
 		},
 		onPressGo: function (oEvent) {
 			var oDialog = this.byId("BusyDialog");
@@ -14,7 +15,7 @@ sap.ui.define([
 				oDialog.close();
 			}, 1000);
 			var oValue = this.getView().byId("idEmpNum").getValue();
-			if (oValue === "Host") {
+			if (oValue === "1") {
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.navTo("RouteHost");
 

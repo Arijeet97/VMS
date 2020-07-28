@@ -1,5 +1,5 @@
 {
-	"welcomeFile": "/index.html",
+	"welcomeFile": "/TEAM14_VMS/index.html",
 	"authenticationMethod": "route",
 	"logout": {
 		"logoutEndpoint": "/do/logout"
@@ -8,7 +8,8 @@
 		"source": "^/JAVA_SERVICE_CF",
 		"target": "/",
 		"destination": "JAVA_SERVICE_CF"
-	}, {
+	},
+	{
 		"source": "^(.*)$",
 		"target": "$1",
 		"service": "html5-apps-repo-rt",

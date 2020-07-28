@@ -13,6 +13,7 @@ modules:
     requires:
       - name: VMS_html5_repo_runtime
       - name: uaa_VMS
+      - name: dest_VMS
   - name: VMS_ui_deployer
     type: com.sap.html5.application-content
     path: VMS_ui_deployer

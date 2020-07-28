@@ -25,7 +25,7 @@
 										<VBox fitContainer="true" alignContent="Center">
 											<items >
 												<Label text="Enter Employee ID" labelFor="idEmpNum" class="LandingLabelInputBox"></Label>
-												<Input id="idEmpNum" value="" class="LandingInputBox" width="80%" placeholder="Employee Id" required="true"></Input>
+												<Input id="idEmpNum" value="{oHostModel>/eId}" class="LandingInputBox" width="80%" placeholder="Employee Id" required="true"></Input>
 												<Label text="Enter Password" labelFor="idEmpPass" class="LandingLabelInputBox"></Label>
 												<Input id="idEmpPass" class="LandingInputBox" width="80%" placeholder="Password" type="Password"></Input>
 												<HBox class="LandingButton">

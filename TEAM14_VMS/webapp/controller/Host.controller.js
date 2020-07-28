@@ -43,7 +43,8 @@ sap.ui.define([
 			this.getView().setModel(oModel3, "oGlobalModel");
 			var oModel4 = new JSONModel("model/VisitorDetails.json");
 			this.getView().setModel(oModel4, "oPreRegForm");
-
+			var oHostModel = this.getOwnerComponent().getModel("oHostModel");
+			this.getView().setModel(oHostModel, "oHostModel");
 			var flex = this.byId(sap.ui.core.Fragment.createId("idAddItemFrag", "idFB"));
 
 		},
@@ -133,26 +134,26 @@ sap.ui.define([
 
 		},
 		onCheckedIn: function () {
-			// var that = this;
-			// var oGlobalModel = that.getOwnerComponent().getModel("oGlobalModel");
-			// var sUrl2 = "/JAVA_SERVICE_CF/employee/getCheckedInVisitors?eId=eId&date=dd-MM-yyyy";
-
-			// $.ajax({
-			// 	url: sUrl2,
-			// 	data: null,
-			// 	async: true,
-			// 	dataType: "json",
-			// 	contentType: "application/json; charset=utf-8",
-			// 	error: function (err) {
-			// 		sap.m.MessageToast.show("Destination Failed");
-			// 	},
-			// 	success: function (data) {
-			// 		sap.m.MessageToast.show("Data Successfully Loaded");
-			// 		oGlobalModel.setProperty("/CheckedIn", data);
-
-			// 	},
-			// 	type: "GET"
-			// });
+		var that = this;
+			var oHostModel = that.getOwnerComponent().getModel("oHostModel");
+			var sUrl1 = "/JAVA_SERVICE_CF/employee/getCheckedInVisitors?eId=" + oHostModel.getProperty("/eId") + "&date=" + oHostModel.getProperty(
+				"/date");
+			$.ajax({
+				url: sUrl1,
+				data: null,
+				async: true,
+				cache: false,
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				error: function (err) {
+					sap.m.MessageToast.show("Destination Failed");
+				},
+				success: function (data) {
+					oHostModel.setProperty("/CheckedIn", data);
+					sap.m.MessageToast.show("Data Successfully Loaded");
+				},
+				type: "GET"
+			});
 			this.getView().getModel("oViewModel").setProperty("/UpcomingVisibility", false);
 			this.getView().getModel("oViewModel").setProperty("/CheckedInVisibility", true);
 			this.getView().getModel("oViewModel").setProperty("/CheckedOutVisibility", false);
