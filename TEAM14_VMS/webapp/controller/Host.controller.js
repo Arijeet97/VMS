@@ -43,8 +43,8 @@ sap.ui.define([
 			this.getView().setModel(oModel3, "oGlobalModel");
 			var oModel4 = new JSONModel("model/VisitorDetails.json");
 			this.getView().setModel(oModel4, "oPreRegForm");
-			var oHostModel = this.getOwnerComponent().getModel("oHostModel");
-			this.getView().setModel(oHostModel, "oHostModel");
+			var oLoginModel = this.getOwnerComponent().getModel("oLoginModel");
+			this.getView().setModel(oLoginModel, "oLoginModel");
 			var flex = this.byId(sap.ui.core.Fragment.createId("idAddItemFrag", "idFB"));
 
 		},
@@ -135,8 +135,8 @@ sap.ui.define([
 		},
 		onCheckedIn: function () {
 		var that = this;
-			var oHostModel = that.getOwnerComponent().getModel("oHostModel");
-			var sUrl1 = "JAVA_SERVICE_CF/employee/getCheckedInVisitors?eId=" + oHostModel.getProperty("/eId") + "&date=" + oHostModel.getProperty(
+			var oLoginModel = that.getOwnerComponent().getModel("oLoginModel");
+			var sUrl1 = "JAVA_SERVICE_CF/employee/getCheckedInVisitors?eId=" + oLoginModel.getProperty("/eId") + "&date=" + oLoginModel.getProperty(
 				"/date");
 			$.ajax({
 				url: sUrl1,
@@ -149,7 +149,7 @@ sap.ui.define([
 					sap.m.MessageToast.show("Destination Failed");
 				},
 				success: function (data) {
-					oHostModel.setProperty("/CheckedIn", data);
+					oLoginModel.setProperty("/CheckedIn", data);
 					sap.m.MessageToast.show("Data Successfully Loaded");
 				},
 				type: "GET"
