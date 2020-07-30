@@ -33,19 +33,20 @@ sap.ui.define([
 			var username = this.getView().getModel("oLoginModel").getProperty("/eId");
 			var password = this.getView().getModel("oLoginModel").getProperty("/password");
 			var that = this;
-			var oLoginModel = that.getView().getModel("oLoginModel");
+			// var oLoginModel = that.getView().getModel("oLoginModel");
 			var sUrl = "JAVA_SERVICE_CF/employee/login";
-			var item = {
-				"username": username,
-				"password": password
+			var item={
+				
+				"username":username,
+				"password":password
+			
 			};
 			$.ajax({
 				url: sUrl,
-				type: "post",
+				type: "POST",
 				cache: false,
 				async: true,
 				dataType: "json",
-				// data: JSON.stringify(payload),
 				data: JSON.stringify(item) ,
 				beforeSend: function (xhr) {
 					var param = "/JAVA_SERVICE_CF";
