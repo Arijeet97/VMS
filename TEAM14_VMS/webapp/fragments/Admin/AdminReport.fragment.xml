@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:c="sap.suite.ui.microchart">
+	<l:HorizontalLayout class="date">
+		<Label class="datelabel" text=" Start Date:"/>
+		<DatePicker class="date" dateValue="{/date}"/>
+	</l:HorizontalLayout>
+	<l:HorizontalLayout class="date">
+		<Label class="datelabel" text="End Date:"/>
+		<DatePicker class="date" dateValue="{/date}"/>
+	</l:HorizontalLayout>
+	<l:VerticalLayout width="100%">
+		<MessageStrip text="Monthly Report"/>
+		<c:InteractiveBarChart labelWidth="25%" selectionChanged="selectionChanged" press="press">
+			<c:bars>
+				<c:InteractiveBarChartBar label="Frequent Visitor" value="30"/>
+				<c:InteractiveBarChartBar label="Blacklisted Visitor" value="10"/>
+				<c:InteractiveBarChartBar label="Total Visitors" value="77"/>
+			</c:bars>
+		</c:InteractiveBarChart>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

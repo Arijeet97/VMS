@@ -1,0 +1,74 @@
+<mvc:View controllerName="inc.inktn.pro.TEAM14_VMS.controller.Admin" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:tnt="sap.tnt">
+	<tnt:ToolPage id="ToolPage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button id="sideNavigationToggleButton" tooltip="Show Menu" icon="sap-icon://menu2" type="Transparent" press=".onSideNavButtonPress">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSpacer width="10px"/>
+				<Image height="65%" width="10%" src="./image/Incture.png">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Image>
+				<Text text="Welcome Admin Name">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Text>
+				<tnt:ToolHeaderUtilitySeparator/>
+				<ToolbarSpacer>
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="15px"/>
+					</layoutData>
+				</ToolbarSpacer>
+				<Button tooltip="Notifications" icon="sap-icon://bell">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+				<Button tooltip="Settings" icon="sap-icon://action-settings">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+				<Button tooltip="Profile" icon="sap-icon://customer" type="Transparent" press="onProfile">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation class="masterpage" expanded="true" itemSelect=".onItemSelect">
+				<tnt:NavigationList items="{path: 'oGlobalModel>/AdminMasterDetails'}">
+					<tnt:NavigationListItem text="{oGlobalModel>title}" icon="{oGlobalModel>icon}" expanded="{oGlobalModel>expanded}" key="{oGlobalModel>key}"></tnt:NavigationListItem>
+				</tnt:NavigationList>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="detailContainer" initialPage="adminDash">
+				<pages>
+					<ScrollContainer id="adminDash" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Admin.AdminDetailDash" type="XML"></core:Fragment>
+					</ScrollContainer>
+					<ScrollContainer id="adminReport" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Admin.AdminReport" type="XML"></core:Fragment>
+					</ScrollContainer>
+					<ScrollContainer id="adminRequest" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Admin.AdminRequest" type="XML"></core:Fragment>
+					</ScrollContainer>
+					<ScrollContainer id="adminBlacklist" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Admin.AdminBlacklist" type="XML"></core:Fragment>
+					</ScrollContainer>
+					<ScrollContainer id="adminEvacuation" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Admin.AdminEvacuation" type="XML"></core:Fragment>
+					</ScrollContainer>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

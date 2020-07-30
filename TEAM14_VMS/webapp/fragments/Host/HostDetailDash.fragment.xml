@@ -2,7 +2,7 @@
 	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 	<l:HorizontalLayout class="date">
 		<Label class="datelabel" text="Date:"/>
-		<DatePicker class="date" value="{oLoginModel>/date}" valueFormat="dd-MM-yyyy"/>
+		<DatePicker class="date" value="{oHostModel>/date}" valueFormat="MMM dd, yyyy"/>
 	</l:HorizontalLayout>
 	<l:VerticalLayout width="100%" class="TileStyle">
 		<l:Grid>
@@ -44,7 +44,7 @@
 			</l:content>
 		</l:Grid>
 	</l:VerticalLayout>
-	<Table id="idHostUpcoming" inset="true" items="{path: 'oGlobalModel>/Details'}" visible="{oViewModel>/UpcomingVisibility}">
+	<Table id="idHostUpcoming" inset="true" items="{path: 'oHostModel>/UpcomingMeeting'}" visible="{oViewModel>/UpcomingVisibility}">
 		<headerToolbar>
 			<OverflowToolbar>
 				<content>
@@ -81,17 +81,17 @@
 		<items>
 			<ColumnListItem >
 				<cells>
-					<Text text="{oGlobalModel>Meeting Id}"/>
-					<Text text="{oGlobalModel>Name}"/>
-					<Text text="{oGlobalModel>Contact Number}"/>
-					<Text text="{oGlobalModel>Organisation}"/>
-					<Text text="{oGlobalModel>Purpose}"/>
-					<Text text="{oGlobalModel>Time}"/>
+					<Text text="{oHostModel>mId}"/>
+					<Text text="{oHostModel>name}"/>
+					<Text text="{oHostModel>contactNo}"/>
+					<Text text="{oHostModel>Organisation}"/>
+					<Text text="{oHostModel>title}"/>
+					<Text text="{oHostModel>beginTime}"/>
 				</cells>
 			</ColumnListItem>
 		</items>
 	</Table>
-	<Table id="idHostCheckedIn" inset="true" items="{path: 'oLoginModel>/CheckedIn'}" visible="{oViewModel>/CheckedInVisibility}">
+	<Table id="idHostCheckedIn" inset="true" items="{path: 'oHostModel>/CheckedIn'}" visible="{oViewModel>/CheckedInVisibility}">
 		<headerToolbar>
 			<OverflowToolbar>
 				<content>
@@ -131,10 +131,10 @@
 		<items>
 			<ColumnListItem >
 				<cells>
-					<Text text="{oLoginModel>mId}"/>
-					<Text text="{oLoginModel>name}"/>
-					<Text text="{oLoginModel>contactNo}"/>
-					<Text text="{oLoginModel>organisation}"/>
+					<Text text="{oHostModel>mId}"/>
+					<Text text="{oHostModel>name}"/>
+					<Text text="{oHostModel>contactNo}"/>
+					<Text text="{oHostModel>organisation}"/>
 					<Text text="{oHostModel>Purpose}"/>
 					<Text text="{oHostModel>Time}"/>
 					<Text text="{oHostModel>checkedIn}"/>
@@ -142,7 +142,7 @@
 			</ColumnListItem>
 		</items>
 	</Table>
-	<Table id="idHostCheckedOut" inset="true" items="{path: 'oGlobalModel>/Details'}" visible="{oViewModel>/CheckedOutVisibility}">
+	<Table id="idHostCheckedOut" inset="true" items="{path: 'oHostModel>/CheckedOut'}" visible="{oViewModel>/CheckedOutVisibility}">
 		<headerToolbar>
 			<OverflowToolbar>
 				<content>
@@ -173,24 +173,27 @@
 				<Text text="{i18n>Purpose}"/>
 			</Column>
 			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>visId}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
 				<Text text="{i18n>Blacklist}"/>
 			</Column>
 		</columns>
 		<items>
 			<ColumnListItem >
 				<cells>
-					<Text text="{oGlobalModel>Meeting Id}"/>
-					<Text text="{oGlobalModel>Name}"/>
-					<Text text="{oGlobalModel>Contact Number}"/>
-					<Text text="{oGlobalModel>Organisation}"/>
-					<Text text="{oGlobalModel>Purpose}"/>
-					<!--<Text text="{oGlobalModel>Time}"/>-->
-					<Button icon="sap-icon://sys-cancel" type="Reject"></Button>
+					<Text text="{oHostModel>mId}"/>
+					<Text text="{oHostModel>name}"/>
+					<Text text="{oHostModel>contactNo}"/>
+					<Text text="{oHostModel>organisation}"/>
+					<Text text="{oHostModel>Purpose}"/>
+					<Text text="{oHostModel>vId}"/>
+					<Button icon="sap-icon://sys-cancel" type="Reject" press="onDoBlacklist"></Button>
 				</cells>
 			</ColumnListItem>
 		</items>
 	</Table>
-	<Table id="idHostTotalVisitor" inset="true" items="{path: 'oGlobalModel>/Details'}" visible="{oViewModel>/TotalVisitorVisibility}">
+	<Table id="idHostTotalVisitor" inset="true" items="{path: 'oHostModel>/TotalVisitor'}" visible="{oViewModel>/TotalVisitorVisibility}">
 		<headerToolbar>
 			<OverflowToolbar>
 				<content>
@@ -224,11 +227,11 @@
 		<items>
 			<ColumnListItem >
 				<cells>
-					<Text text="{oGlobalModel>Name}"/>
-					<Text text="{oGlobalModel>Contact Number}"/>
-					<Text text="{oGlobalModel>Organisation}"/>
-					<Text text="{oGlobalModel>Purpose}"/>
-					<Text text="{oGlobalModel>Time}"/>
+					<Text text="{oHostModel>name}"/>
+					<Text text="{oHostModel>contactNo}"/>
+					<Text text="{oHostModel>organization}"/>
+					<Text text="{oHostModel>purpose}"/>
+					<Text text="{oHostModel>date}"/>
 				</cells>
 			</ColumnListItem>
 		</items>

@@ -6,8 +6,6 @@ sap.ui.define([
 
 	return Controller.extend("inc.inktn.pro.TEAM14_VMS.controller.Landing", {
 		onInit: function () {
-			var oHostModel = this.getOwnerComponent().getModel("oHostModel");
-			this.getView().setModel(oHostModel, "oHostModel");
 			var oLoginModel = this.getOwnerComponent().getModel("oLoginModel");
 			this.getView().setModel(oLoginModel, "oLoginModel");
 		},
@@ -17,37 +15,36 @@ sap.ui.define([
 			setTimeout(function () {
 				oDialog.close();
 			}, 1000);
-		// 	var oValue = this.getView().byId("idEmpNum").getValue();
-		// 	if (oValue === "1") {
-		// 		var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-		// 		oRouter.navTo("RouteHost");
+			// 	var oValue = this.getView().byId("idEmpNum").getValue();
+			// 	if (oValue === "1") {
+			// 		var eId = this.getView().getModel("oLoginModel").getProperty("/eId");
+			// 		this.getView().getModel("oHostModel").setProperty("/eId", eId);
+			// 		var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			// 		oRouter.navTo("RouteHost");
 
-		// 	} else if (oValue === "Admin") {
-		// 		var oRouter1 = sap.ui.core.UIComponent.getRouterFor(this);
-		// 		oRouter1.navTo("RouteAdmin");
-		// 	} else if (oValue === "Security") {
-		// 		var oRouter2 = sap.ui.core.UIComponent.getRouterFor(this);
-		// 		oRouter2.navTo("RouteSecurity");
-		// 	}
-		// },
+			// 	} else if (oValue === "Admin") {
+			// 		var oRouter1 = sap.ui.core.UIComponent.getRouterFor(this);
+			// 		oRouter1.navTo("RouteAdmin");
+			// 	} else if (oValue === "Security") {
+			// 		var oRouter2 = sap.ui.core.UIComponent.getRouterFor(this);
+			// 		oRouter2.navTo("RouteSecurity");
+			// 	}
+			// },
 			var username = this.getView().getModel("oLoginModel").getProperty("/eId");
 			var password = this.getView().getModel("oLoginModel").getProperty("/password");
 			var that = this;
-			// var oLoginModel = that.getView().getModel("oLoginModel");
-			var sUrl = "JAVA_SERVICE_CF/employee/login";
-			var item={
-				
-				"username":username,
-				"password":password
-			
+			var sUrl = "JAVA_SERVICE_CF/employee/login2";
+			var item = {
+				"username": username,
+				"password": password
 			};
 			$.ajax({
 				url: sUrl,
-				type: "POST",
+				type: "GET",
 				cache: false,
 				async: true,
 				dataType: "json",
-				data: JSON.stringify(item) ,
+				data: item,
 				beforeSend: function (xhr) {
 					var param = "/JAVA_SERVICE_CF";
 					var token = that.getCSRFToken(sUrl, param);
@@ -56,26 +53,32 @@ sap.ui.define([
 				},
 				contentType: "application/json",
 				success: function (oData) {
-					sap.m.MessageToast.show("Logged In Successfully!");
-					if (oData.status === "true") {
+					if (oData.status === true) {
 						if (oData.role === "Employee") {
-							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+							var eId = oData.eid;
+							that.getView().getModel("oHostModel").setProperty("/eId",eId);  
+							var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
 							oRouter.navTo("RouteHost");
 						} else if (oData.role === "Admin") {
-							var oRouter1 = sap.ui.core.UIComponent.getRouterFor(this);
+							var eId2 = oData.eid;
+							that.getView().getModel("oHostModel").setProperty("/eId",eId2);
+							var oRouter1 = sap.ui.core.UIComponent.getRouterFor(that);
 							oRouter1.navTo("RouteAdmin");
 						} else if (oData.role === "Security") {
-							var oRouter2 = sap.ui.core.UIComponent.getRouterFor(this);
+							var eId3 = oData.eid;
+							that.getView().getModel("oHostModel").setProperty("/eId",eId3);
+							var oRouter2 = sap.ui.core.UIComponent.getRouterFor(that);
 							oRouter2.navTo("RouteSecurity");
 						}
+						sap.m.MessageToast.show("Logged In Successfully!");
+					} else if (oData.status === false) {
+						sap.m.MessageToast.show("User doesn't exist");
 					}
 				},
 				error: function (e) {
 					sap.m.MessageToast.show("Internal server Error");
 				},
-
 			});
-
 		},
 		getCSRFToken: function (url, token) {
 			var token = null;
@@ -89,7 +92,6 @@ sap.ui.define([
 				},
 				complete: function (xhr) {
 					token = xhr.getResponseHeader("X-CSRF-Token");
-					sap.m.MessageToast.show("token created");
 				}
 			});
 			return token;

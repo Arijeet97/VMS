@@ -1,0 +1,144 @@
+<core:FragmentDefinition xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<l:HorizontalLayout class="date">
+		<Label class="datelabel" text="Date:"/>
+		<DatePicker class="date" dateValue="{/date}"/>
+	</l:HorizontalLayout>
+	<l:VerticalLayout width="100%" class="TileStyle">
+		<l:Grid>
+			<l:content>
+				<!--<l:HorizontalLayout>-->
+				<GenericTile class="tileLayout sapUiMediumMarginBegin sapUiSmallMarginTop" header="Room Request" press="onRoomRequest">
+					<TileContent>
+						<core:Icon src="sap-icon://approvals"></core:Icon>
+					</TileContent>
+					<layoutData>
+						<l:GridData span="XL3 L3 M6 S12"/>
+					</layoutData>
+				</GenericTile>
+				<GenericTile class="tileLayout sapUiMediumMarginBegin sapUiSmallMarginTop" header="Parking Request" press="onParkingRequest">
+					<TileContent>
+						<core:Icon src="sap-icon://car-rental"></core:Icon>
+					</TileContent>
+					<layoutData>
+						<l:GridData span="XL3 L3 M6 S12"/>
+					</layoutData>
+				</GenericTile>
+			</l:content>
+		</l:Grid>
+	</l:VerticalLayout>
+		<Table id="idAdminRoomRequest" class="detailtable" inset="true" items="{path: 'oGlobalModel>/Details'}"
+			visible="{oViewModel>/RoomRequestVisibility}">
+			<headerToolbar>
+				<OverflowToolbar>
+					<content>
+						<Title text="Room Request" level="H3"/>
+						<ToolbarSpacer></ToolbarSpacer>
+						<Label text="Sort By:"></Label>
+						<ComboBox width="8%">
+							<core:Item text="{}"></core:Item>
+						</ComboBox>
+						<Input placeholder="Search" width="15%"></Input>
+					</content>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Left">
+					<Text text="{i18n>MeetId}"/>
+				</Column>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>name}"/>
+				</Column>
+				
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>ORG}"/>
+				</Column>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>Purpose}"/>
+				</Column>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>host}"/>
+				</Column>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>capacity}"/>
+				</Column>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>action}"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem >
+					<cells>
+						<Text text="{oGlobalModel>Meeting Id}"/>
+						<Text text="{oGlobalModel>Name}"/>
+						<Text text="{oGlobalModel>Organisation}"/>
+						<Text text="{oGlobalModel>Purpose}"/>
+						<Text text="{oGlobalModel>Host}"/>
+						<Text text="{oGlobalModel>Host}"/>
+						<Toolbar style="Clear">
+							<ToolbarSpacer></ToolbarSpacer>
+					    <Button tooltip="Accept Request" icon="sap-icon://accept" type="Accept"></Button>
+						<Button tooltip="Reject Request" icon="sap-icon://sys-cancel" type="Reject"></Button>
+						</Toolbar>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<Table id="idAdminParkingRequest" class="detailtable" inset="true" items="{path: 'oGlobalModel>/Details'}"
+			visible="{oViewModel>/ParkingRequestVisibility}">
+			<headerToolbar>
+				<OverflowToolbar>
+					<content>
+						<Title text="Parking Request" level="H3"/>
+						<ToolbarSpacer></ToolbarSpacer>
+						<Label text="Sort By:"></Label>
+						<ComboBox width="8%">
+							<core:Item text="{}"></core:Item>
+						</ComboBox>
+						<Input placeholder="Search" width="15%"></Input>
+					</content>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Left">
+					<Text text="{i18n>MeetId}"/>
+				</Column>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>name}"/>
+				</Column>
+				
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>ORG}"/>
+				</Column>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>Purpose}"/>
+				</Column>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>host}"/>
+				</Column>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>vehicle}"/>
+				</Column>
+				<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>action}"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem >
+					<cells>
+						<Text text="{oGlobalModel>Meeting Id}"/>
+						<Text text="{oGlobalModel>Name}"/>
+						<Text text="{oGlobalModel>Organisation}"/>
+						<Text text="{oGlobalModel>Purpose}"/>
+						<Text text="{oGlobalModel>Host}"/>
+						<Text text="{oGlobalModel>Vehicle}"/>
+						<Toolbar style="Clear">
+							<ToolbarSpacer></ToolbarSpacer>
+					    <Button tooltip="Accept Request" icon="sap-icon://accept" type="Accept"></Button>
+						<Button tooltip="Reject Request" icon="sap-icon://sys-cancel" type="Reject"></Button>
+						</Toolbar>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+</core:FragmentDefinition>

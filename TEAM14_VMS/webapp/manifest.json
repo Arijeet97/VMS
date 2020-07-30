@@ -74,14 +74,12 @@
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}
-				
 			},
 			"oLoginModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}
-				
 			}
 		},
 		"resources": {
@@ -164,6 +162,14 @@
 				"Host": {
 					"viewType": "XML",
 					"viewName": "Host"
+				},
+				"Admin": {
+					"viewType": "XML",
+					"viewName": "Admin"
+				},
+				"Security": {
+					"viewType": "XML",
+					"viewName": "Security"
 				}
 			}
 		}

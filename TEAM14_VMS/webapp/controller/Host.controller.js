@@ -43,16 +43,12 @@ sap.ui.define([
 			this.getView().setModel(oModel3, "oGlobalModel");
 			var oModel4 = new JSONModel("model/VisitorDetails.json");
 			this.getView().setModel(oModel4, "oPreRegForm");
-			var oLoginModel = this.getOwnerComponent().getModel("oLoginModel");
-			this.getView().setModel(oLoginModel, "oLoginModel");
-			var flex = this.byId(sap.ui.core.Fragment.createId("idAddItemFrag", "idFB"));
-
+			var oHostModel = this.getOwnerComponent().getModel("oHostModel");
+			this.getView().setModel(oHostModel, "oHostModel");
 		},
-
 		_data: {
 			"date": new Date()
 		},
-
 		onAdd: function () {
 			this.bFlag = true;
 			if (!this._oDialog) {
@@ -126,17 +122,9 @@ sap.ui.define([
 			}
 		},
 		onUpcoming: function () {
-
-			this.getView().getModel("oViewModel").setProperty("/UpcomingVisibility", true);
-			this.getView().getModel("oViewModel").setProperty("/CheckedInVisibility", false);
-			this.getView().getModel("oViewModel").setProperty("/CheckedOutVisibility", false);
-			this.getView().getModel("oViewModel").setProperty("/TotalVisitorVisibility", false);
-
-		},
-		onCheckedIn: function () {
-		var that = this;
-			var oLoginModel = that.getOwnerComponent().getModel("oLoginModel");
-			var sUrl1 = "JAVA_SERVICE_CF/employee/getCheckedInVisitors?eId=" + oLoginModel.getProperty("/eId") + "&date=" + oLoginModel.getProperty(
+			var that = this;
+			var oHostModel = that.getOwnerComponent().getModel("oHostModel");
+			var sUrl1 = "JAVA_SERVICE_CF/employee/getUpcomingMeetings?eId=" + oHostModel.getProperty("/eId") + "&date=" + oHostModel.getProperty(
 				"/date");
 			$.ajax({
 				url: sUrl1,
@@ -149,7 +137,34 @@ sap.ui.define([
 					sap.m.MessageToast.show("Destination Failed");
 				},
 				success: function (data) {
-					oLoginModel.setProperty("/CheckedIn", data);
+					oHostModel.setProperty("/UpcomingMeeting", data);
+					sap.m.MessageToast.show("Data Successfully Loaded");
+				},
+				type: "GET"
+			});
+			this.getView().getModel("oViewModel").setProperty("/UpcomingVisibility", true);
+			this.getView().getModel("oViewModel").setProperty("/CheckedInVisibility", false);
+			this.getView().getModel("oViewModel").setProperty("/CheckedOutVisibility", false);
+			this.getView().getModel("oViewModel").setProperty("/TotalVisitorVisibility", false);
+
+		},
+		onCheckedIn: function () {
+			var that = this;
+			var oHostModel = that.getOwnerComponent().getModel("oHostModel");
+			var sUrl1 = "JAVA_SERVICE_CF/employee/getCheckedInVisitors?eId=" + oHostModel.getProperty("/eId") + "&date=" + oHostModel.getProperty(
+				"/date");
+			$.ajax({
+				url: sUrl1,
+				data: null,
+				async: true,
+				cache: false,
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				error: function (err) {
+					sap.m.MessageToast.show("Destination Failed");
+				},
+				success: function (data) {
+					oHostModel.setProperty("/CheckedIn", data);
 					sap.m.MessageToast.show("Data Successfully Loaded");
 				},
 				type: "GET"
@@ -161,6 +176,26 @@ sap.ui.define([
 
 		},
 		onCheckedOut: function () {
+			var that = this;
+			var oHostModel = that.getOwnerComponent().getModel("oHostModel");
+			var sUrl1 = "JAVA_SERVICE_CF/employee/getCheckedOutVisitors?eId=" + oHostModel.getProperty("/eId") + "&date=" + oHostModel.getProperty(
+				"/date");
+			$.ajax({
+				url: sUrl1,
+				data: null,
+				async: true,
+				cache: false,
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				error: function (err) {
+					sap.m.MessageToast.show("Destination Failed");
+				},
+				success: function (data) {
+					oHostModel.setProperty("/CheckedOut", data);
+					sap.m.MessageToast.show("Data Successfully Loaded");
+				},
+				type: "GET"
+			});
 			this.getView().getModel("oViewModel").setProperty("/UpcomingVisibility", false);
 			this.getView().getModel("oViewModel").setProperty("/CheckedInVisibility", false);
 			this.getView().getModel("oViewModel").setProperty("/CheckedOutVisibility", true);
@@ -168,6 +203,25 @@ sap.ui.define([
 
 		},
 		onTotalVisittor: function () {
+			var that = this;
+			var oHostModel = that.getOwnerComponent().getModel("oHostModel");
+			var sUrl1 = "JAVA_SERVICE_CF/employee/getTotalVisitors?eId=" + oHostModel.getProperty("/eId");
+			$.ajax({
+				url: sUrl1,
+				data: null,
+				async: true,
+				cache: false,
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				error: function (err) {
+					sap.m.MessageToast.show("Destination Failed");
+				},
+				success: function (data) {
+					oHostModel.setProperty("/TotalVisitor", data);
+					sap.m.MessageToast.show("Data Successfully Loaded");
+				},
+				type: "GET"
+			});
 			this.getView().getModel("oViewModel").setProperty("/UpcomingVisibility", false);
 			this.getView().getModel("oViewModel").setProperty("/CheckedInVisibility", false);
 			this.getView().getModel("oViewModel").setProperty("/CheckedOutVisibility", false);
@@ -233,6 +287,11 @@ sap.ui.define([
 			});
 			this.flex.addContent(Layout);
 		}
+		
+		// onDoBlacklist : function(){
+		// 	var that = this
+		// }
+		
 
 	});
 

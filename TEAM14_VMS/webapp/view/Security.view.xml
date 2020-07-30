@@ -1,0 +1,71 @@
+<mvc:View controllerName="inc.inktn.pro.TEAM14_VMS.controller.Security" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:tnt="sap.tnt">
+	<tnt:ToolPage id="ToolPage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button id="sideNavigationToggleButton" tooltip="Show Menu" icon="sap-icon://menu2" type="Transparent" press=".onSideNavButtonPress">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSpacer width="10px"/>
+				<Image height="65%" width="10%" src="./image/Incture.png">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Image>
+				<Text text="Welcome Security Name">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Text>
+				<tnt:ToolHeaderUtilitySeparator/>
+				<ToolbarSpacer>
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="15px"/>
+					</layoutData>
+				</ToolbarSpacer>
+				<Button tooltip="Notifications" icon="sap-icon://bell">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+				<Button tooltip="Settings" icon="sap-icon://action-settings">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+				<Button tooltip="Profile" icon="sap-icon://customer" type="Transparent" press="onProfile">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation class="masterpage" expanded="true" itemSelect=".onItemSelect">
+				<tnt:NavigationList items="{path: 'oGlobalModel>/SecurityMasterDetails'}">
+					<tnt:NavigationListItem text="{oGlobalModel>title}" icon="{oGlobalModel>icon}" expanded="{oGlobalModel>expanded}" key="{oGlobalModel>key}"></tnt:NavigationListItem>
+				</tnt:NavigationList>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="detailContainer" initialPage="securityDash">
+				<pages>
+					<ScrollContainer id="securityDash" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Security.SecurityDetailDash" type="XML"></core:Fragment>
+					</ScrollContainer>
+					<ScrollContainer id="securityParking" horizontal="false" vertical="true" height="100%">
+					<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Security.SecurityParking" type="XML"></core:Fragment>
+					</ScrollContainer>
+					<ScrollContainer id="securityDelivery" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Security.SecurityDelivery" type="XML"></core:Fragment>
+					</ScrollContainer>
+					<ScrollContainer id="securityEvacuation" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="inc.inktn.pro.TEAM14_VMS.fragments.Security.SecurityEvacuation" type="XML"></core:Fragment>
+					</ScrollContainer>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<l:HorizontalLayout class="date">
+		<Label class="datelabel" text="Date:"/>
+		<DatePicker class="date" dateValue="{/date}"/>
+	</l:HorizontalLayout>
+	<Table id="SecurityDelivery" inset="true" items="{ path: 'oPreRegForm>/DeliveryData'}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Recent Deliveries" level="H3"/>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Label text="Sort By:"></Label>
+					<ComboBox width="8%">
+						<core:Item text="{}"></core:Item>
+					</ComboBox>
+					<Button text="New Delivery" type="Emphasized" press="onAdd"></Button>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Left">
+				<Text text="{i18n>empID}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>empName}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Contact}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>delivType}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>Status}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>action}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem >
+				<cells>
+					<Text text="{oPreRegForm>EmployeeId}"></Text>
+					<Text></Text>
+					<Text></Text>
+					<Text text="{oPreRegForm>DeliveryType}"></Text>
+					<Text></Text>
+					<Toolbar style="Clear">
+						<Button text="Accept" type="Accept"></Button>
+						<Button text="Reject" type="Reject"></Button>
+					</Toolbar>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>
